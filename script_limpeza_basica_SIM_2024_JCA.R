@@ -8,21 +8,21 @@
 # COM A NECESSIDADE DA BASE DE DADOS UTILIZADA 
 ########################
 # BASE DE DADOS DO SIM DE 2020 A 2022 - RESIDENTES DO MRJ
+# O OBJETIVO SERA TRATAR A BASE DE DADOS PARA O PROCESSO DE LINK
 
 #INSTALANDO
-
 install.packages("pacman")
 
 # CHAMANDO PACOTES NA BIBLIOTECA
 
 pacman::p_load(
-  rio,        # importação de dados  
+  rio,        # importaÃ§Ã£o de dados  
   here,       # caminhos de arquicos relacionados
   janitor,    # limpeza de dados e tabelas
   lubridate,  # trabalhando com datas
-  matchmaker, # limpeza baseada no dicionário
-  epikit,     # funções de age_categories() 
-  tidyverse,  # manejo e visualização de dados
+  matchmaker, # limpeza baseada no dicionÃ¡rio
+  epikit,     # funÃ§Ãµes de age_categories() 
+  tidyverse,  # manejo e visualizaÃ§Ã£o de dados
   skimr,      # para pesquisas de strings, pode ser usado em valores "rolling-up"
   stringr,
   summarytools# apresenta uma visao geral da base de dados
@@ -49,8 +49,8 @@ print(summarytools::dfSummary(SIM2020), method = 'viewer')
 
 
 #ARRUMANDO O NOME DAS COLUNAS
-# pipe do conjunto de dados brutos através da 
-#                  função clean_names(), atribuindo o resultado como "dados"
+# pipe do conjunto de dados brutos atravÃ©s da 
+#                  funÃ§Ã£o clean_names(), atribuindo o resultado como "dados"
 
 
 SIM2020 <- SIM2020 |>
@@ -191,8 +191,6 @@ table(SIM2020_FILTRO$nome)
 SIM2020_FILTRO$nome<-str_replace_all(SIM2020_FILTRO$nome,
                                      "[@,!,},&,{,.,#,!,?,*,|,/,),(,$,-.%,1,2,3,4,5,6,7,8,9,0]", "")
 
-
-
 # NOME MAE
 
 #retirando DE, DA, DO, DAS, DOS
@@ -202,14 +200,11 @@ SIM2020_FILTRO$nomemae <- gsub(" DO ", " ", SIM2020_FILTRO$nomemae)
 SIM2020_FILTRO$nomemae <- gsub(" DAS ", " ", SIM2020_FILTRO$nomemae)
 SIM2020_FILTRO$nomemae <- gsub(" DOS ", " ", SIM2020_FILTRO$nomemae)
 
-
 # RETIRANDO CARACTERES INDESEJAVEIS 
 ###################
 
 SIM2020_FILTRO$nomemae<-str_replace_all(SIM2020_FILTRO$nomemae,
                                      "[@,!,},&,{,.,#,!,?,*,|,/,),(,$,-.%,1,2,3,4,5,6,7,8,9,0]", "")
-
-
 
 
 ###### FOMATANDO E DECOMPONDO A DATA DE NASCIMENTO
@@ -278,24 +273,3 @@ write.csv(SIM_TOTAL,"SIM_TOTAL.csv")
 library(rio)
 
 export(SIM_TOTAL,"SIM_TOTAL.dbf")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
